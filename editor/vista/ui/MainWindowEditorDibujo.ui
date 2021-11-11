@@ -73,8 +73,71 @@
        <property name="sizeConstraint">
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
-       <item row="11" column="0">
-        <widget class="QLabel" name="label_color_fondo">
+       <item row="10" column="0">
+        <widget class="QPushButton" name="pbutton_borrar">
+         <property name="toolTip">
+          <string>Borrar figura seleccionada</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/img/delete.png</normaloff>:/images/img/delete.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="0">
+        <widget class="QPushButton" name="pbutton_linea">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Línea</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/img/linea.png</normaloff>:/images/img/linea.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup</string>
+         </attribute>
+        </widget>
+       </item>
+       <item row="14" column="0">
+        <widget class="QSpinBox" name="spin_ancho_linea">
+         <property name="toolTip">
+          <string>Ancho de línea</string>
+         </property>
+         <property name="maximum">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="13" column="0">
+        <widget class="QLabel" name="label_color_linea">
          <property name="minimumSize">
           <size>
            <width>28</width>
@@ -82,7 +145,7 @@
           </size>
          </property>
          <property name="toolTip">
-          <string>Color de fondo</string>
+          <string>Color de línea</string>
          </property>
          <property name="autoFillBackground">
           <bool>true</bool>
@@ -130,79 +193,7 @@
          </attribute>
         </widget>
        </item>
-       <item row="8" column="0">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="12" column="0">
-        <widget class="QLabel" name="label_color_linea">
-         <property name="minimumSize">
-          <size>
-           <width>28</width>
-           <height>29</height>
-          </size>
-         </property>
-         <property name="toolTip">
-          <string>Color de línea</string>
-         </property>
-         <property name="autoFillBackground">
-          <bool>true</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0">
-        <widget class="QPushButton" name="pbutton_borrar">
-         <property name="toolTip">
-          <string>Borrar figura seleccionada</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="resources.qrc">
-           <normaloff>:/images/img/delete.png</normaloff>:/images/img/delete.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QPushButton" name="pbutton_rect">
-         <property name="toolTip">
-          <string>Rectángulo</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="resources.qrc">
-           <normaloff>:/images/img/rectangle.png</normaloff>:/images/img/rectangle.png</iconset>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
-        </widget>
-       </item>
-       <item row="10" column="0">
+       <item row="11" column="0">
         <spacer name="horizontalSpacer_2">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -235,43 +226,7 @@
          </attribute>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="pbutton_linea">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="toolTip">
-          <string>Línea</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="resources.qrc">
-           <normaloff>:/images/img/linea.png</normaloff>:/images/img/linea.png</iconset>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
-        </widget>
-       </item>
-       <item row="13" column="0">
-        <widget class="QSpinBox" name="spin_ancho_linea">
-         <property name="toolTip">
-          <string>Ancho de línea</string>
-         </property>
-         <property name="maximum">
-          <number>10</number>
-         </property>
-        </widget>
-       </item>
-       <item row="14" column="0">
+       <item row="15" column="0">
         <widget class="QComboBox" name="combo_tipo_linea">
          <property name="toolTip">
           <string>Tipo de línea</string>
@@ -303,6 +258,68 @@
             <normaloff>:/images/img/puntos.png</normaloff>:/images/img/puntos.png</iconset>
           </property>
          </item>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QPushButton" name="pbutton_rect">
+         <property name="toolTip">
+          <string>Rectángulo</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/img/rectangle.png</normaloff>:/images/img/rectangle.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup</string>
+         </attribute>
+        </widget>
+       </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="label_color_fondo">
+         <property name="minimumSize">
+          <size>
+           <width>28</width>
+           <height>29</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Color de fondo</string>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QPushButton" name="pbutton_triangulo">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/img/triangle.png</normaloff>:/images/img/triangle.png</iconset>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <attribute name="buttonGroup">
+          <string notr="true">buttonGroup</string>
+         </attribute>
         </widget>
        </item>
       </layout>
@@ -346,7 +363,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">

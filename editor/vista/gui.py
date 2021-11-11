@@ -2,6 +2,7 @@ from PySide2.QtCore import Qt, QCoreApplication, QPoint
 from PySide2.QtGui import QMouseEvent, QPaintEvent, QPainter, QBrush, QPalette
 from PySide2.QtWidgets import QWidget, QMainWindow, QFrame, QFileDialog, QColorDialog
 
+from editor.mundo.figuras_adicionales import Triangulo
 from editor.mundo.mundo import Linea, Rectangulo, Ovalo, Dibujo
 from editor.vista.ui.ui_MainWindowEditorDibujo import Ui_MainWindowEditorDibujo
 
@@ -141,7 +142,8 @@ class VentanaEditorDibujo(QMainWindow):
     def accion(self):
         if self.ui.pbutton_seleccionar.isChecked():
             return VentanaEditorDibujo.SELECCIONAR
-        elif self.ui.pbutton_linea.isChecked() or self.ui.pbutton_rect.isChecked() or self.ui.pbutton_ovalo.isChecked():
+        elif self.ui.pbutton_linea.isChecked() or self.ui.pbutton_rect.isChecked() or self.ui.pbutton_ovalo.isChecked()\
+                or self.ui.pbutton_triangulo.isChecked():
             return VentanaEditorDibujo.DIBUJAR
         else:
             return VentanaEditorDibujo.NINGUNA
@@ -190,6 +192,8 @@ class VentanaEditorDibujo(QMainWindow):
             figura = Rectangulo(p1, p2, c_linea, t_linea, ancho, c_fondo)
         elif self.ui.pbutton_ovalo.isChecked():
             figura = Ovalo(p1, p2, c_linea, t_linea, ancho, c_fondo)
+        elif self.ui.pbutton_triangulo.isChecked():
+            figura = Triangulo(p1, p2, c_linea, t_linea, ancho, c_fondo)
 
         self.dibujo.agregar_figura(figura)
         self.canvas.repaint()
