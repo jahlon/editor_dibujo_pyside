@@ -1,11 +1,12 @@
 import pickle
 from abc import ABC, abstractmethod, ABCMeta
+from typing import Protocol
 
 from PySide2.QtCore import QPoint, Qt, QLine, QRect
 from PySide2.QtGui import QColor, QPainter, QPen, QBrush
 
 
-class IFigura(metaclass=ABCMeta):
+class IFigura(ABC):
     @abstractmethod
     def pintar(self, qp: QPainter, seleccionada: bool):
         raise NotImplementedError
