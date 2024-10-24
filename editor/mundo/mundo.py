@@ -2,8 +2,8 @@ import pickle
 from abc import ABC, abstractmethod
 from typing import Protocol
 
-from PySide2.QtCore import QPoint, Qt, QLine, QRect
-from PySide2.QtGui import QColor, QPainter, QPen, QBrush
+from PySide6.QtCore import QPoint, Qt, QLine, QRect
+from PySide6.QtGui import QColor, QPainter, QPen, QBrush
 
 
 class IFigura(Protocol):

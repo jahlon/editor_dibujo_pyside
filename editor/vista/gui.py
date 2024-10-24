@@ -1,6 +1,6 @@
-from PySide2.QtCore import Qt, QCoreApplication, QPoint
-from PySide2.QtGui import QMouseEvent, QPaintEvent, QPainter, QBrush, QPalette
-from PySide2.QtWidgets import QWidget, QMainWindow, QFrame, QFileDialog, QColorDialog
+from PySide6.QtCore import Qt, QCoreApplication, QPoint
+from PySide6.QtGui import QMouseEvent, QPaintEvent, QPainter, QBrush, QPalette
+from PySide6.QtWidgets import QWidget, QMainWindow, QFrame, QFileDialog, QColorDialog
 
 from editor.mundo.figuras_adicionales import Triangulo
 from editor.mundo.mundo import Linea, Rectangulo, Ovalo, Dibujo
@@ -24,17 +24,17 @@ class Canvas(QWidget):
 
         # Pintar el fondo del widget de blanco
         p = self.palette()
-        p.setColor(self.backgroundRole(), Qt.white)
+        p.setColor(self.backgroundRole(), Qt.GlobalColor.white)
         self.setPalette(p)
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             self.main_window.hacer_click(event.x(), event.y())
 
     def paintEvent(self, event: QPaintEvent) -> None:
         qp = QPainter()
         qp.begin(self)
-        qp.setRenderHint(QPainter.Antialiasing, True)
+        qp.setRenderHint(QPainter.RenderHint.Antialiasing, True)
         self.main_window.dibujar(qp)
 
         # Pintar el punto seleccionado
@@ -42,8 +42,8 @@ class Canvas(QWidget):
             x_sel = self.main_window.x_seleccionado
             y_sel = self.main_window.y_seleccionado
             brush = QBrush()
-            brush.setColor(Qt.green)
-            brush.setStyle(Qt.SolidPattern)
+            brush.setColor(Qt.GlobalColor.green)
+            brush.setStyle(Qt.BrushStyle.SolidPattern)
             qp.setBrush(brush)
             qp.drawEllipse(x_sel - 2, y_sel - 2, 3, 3)
 
@@ -73,17 +73,17 @@ class VentanaEditorDibujo(QMainWindow):
         self.actualizar_titulo()
 
         # Agregar el lienzo a la ventana
-        self.ui.canvas_container.setFrameStyle(QFrame.Panel | QFrame.Sunken)
+        self.ui.canvas_container.setFrameStyle(QFrame.Shape.Panel | QFrame.Shadow.Sunken)
         self.ui.canvas_container.layout().addWidget(self.canvas)
 
         # Asignar el color por defecto para el fondo de las figuras
         paleta_fondo = self.ui.label_color_fondo.palette()
-        paleta_fondo.setColor(QPalette.Background, Qt.blue)
+        paleta_fondo.setColor(QPalette.ColorRole.Window, Qt.GlobalColor.blue)
         self.ui.label_color_fondo.setPalette(paleta_fondo)
 
         # Asignar el color por defecto para la línea de las figuras
         paleta_linea = self.ui.label_color_linea.palette()
-        paleta_linea.setColor(QPalette.Background, Qt.black)
+        paleta_linea.setColor(QPalette.ColorRole.Window, Qt.GlobalColor.black)
         self.ui.label_color_linea.setPalette(paleta_linea)
 
         # Enlazar eventos y señales de los controles
@@ -105,9 +105,8 @@ class VentanaEditorDibujo(QMainWindow):
 
     def guardar_dibujo(self):
         if not self.dibujo.esta_guardado():
-            options = QFileDialog.Options()
             file_name, _ = QFileDialog.getSaveFileName(self, "Guardar dibujo", "", "Dibujo (*.dibujo)",
-                                                       "Dibujo (*.dibujo)", options)
+                                                       "Dibujo (*.dibujo)")
 
             if file_name:
                 self.dibujo.guardar(file_name)
@@ -116,9 +115,8 @@ class VentanaEditorDibujo(QMainWindow):
         self.actualizar_titulo()
 
     def abrir_dibujo(self):
-        options = QFileDialog.Options()
         file_name, _ = QFileDialog.getOpenFileName(self, "Abrir dibujo", "", "Dibujo (*.dibujo)",
-                                                   "Dibujo (*.dibujo)", options)
+                                                   "Dibujo (*.dibujo)")
         if file_name:
             self.dibujo.cargar(file_name)
 
@@ -151,11 +149,11 @@ class VentanaEditorDibujo(QMainWindow):
     def tipo_linea(self):
         index = self.ui.combo_tipo_linea.currentIndex()
         if index == 0:
-            return Qt.SolidLine
+            return Qt.PenStyle.SolidLine
         elif index == 1:
-            return Qt.DashLine
+            return Qt.PenStyle.DashLine
         else:
-            return Qt.DotLine
+            return Qt.PenStyle.DotLine
 
     def borrar_figura(self):
         self.dibujo.borrar_figura_seleccionada()
@@ -169,23 +167,24 @@ class VentanaEditorDibujo(QMainWindow):
 
     def seleccionar_color_fondo(self, event):
         paleta = self.ui.label_color_fondo.palette()
-        color = QColorDialog.getColor(paleta.color(QPalette.Background))
-        paleta.setColor(QPalette.Background, color)
+        color = QColorDialog.getColor(paleta.color(QPalette.ColorRole.Window))
+        paleta.setColor(QPalette.ColorRole.Window, color)
         self.ui.label_color_fondo.setPalette(paleta)
 
     def seleccionar_color_linea(self, event):
         paleta = self.ui.label_color_linea.palette()
-        color = QColorDialog.getColor(paleta.color(QPalette.Background))
-        paleta.setColor(QPalette.Background, color)
+        color = QColorDialog.getColor(paleta.color(QPalette.ColorRole.Window))
+        paleta.setColor(QPalette.ColorRole.Window, color)
         self.ui.label_color_linea.setPalette(paleta)
 
     def agregar_figura(self, x1: int, y1: int, x2: int, y2: int):
         p1 = QPoint(x1, y1)
         p2 = QPoint(x2, y2)
-        c_linea = self.ui.label_color_linea.palette().color(QPalette.Background)
-        c_fondo = self.ui.label_color_fondo.palette().color(QPalette.Background)
+        c_linea = self.ui.label_color_linea.palette().color(QPalette.ColorRole.Window)
+        c_fondo = self.ui.label_color_fondo.palette().color(QPalette.ColorRole.Window)
         ancho = self.ui.spin_ancho_linea.value()
         t_linea = self.tipo_linea()
+        figura = None
         if self.ui.pbutton_linea.isChecked():
             figura = Linea(p1, p2, c_linea, t_linea, ancho)
         elif self.ui.pbutton_rect.isChecked():
