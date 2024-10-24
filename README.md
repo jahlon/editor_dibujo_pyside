@@ -10,8 +10,8 @@ A simple drawing editor application built with Python and PySide2.
 
 ## Requirements
 
-- Python 3.6+
-- PySide2~=5.15.2
+- Python 3.11+
+- PySide6
 
 ## Installation
 
