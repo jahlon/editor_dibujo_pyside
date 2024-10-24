@@ -1,6 +1,6 @@
 # Drawing Editor
 
-A simple drawing editor application built with Python and PySide2.
+A simple drawing editor application built with Python and PySide6.
 
 ## Features
 
